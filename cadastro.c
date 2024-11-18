@@ -16,6 +16,7 @@ void AtualizarStatus(tarefa [10], int, char [10], int);
 bool VerificaId(tarefa [10], int, char [10]);
 void LimpaConsulta(char [10]);
 bool VerificaSeStatusJaExiste(tarefa [10], int, char [10], int);
+void ListarTarefas(tarefa [10], int);
 
 int main()
 {
@@ -117,6 +118,12 @@ int main()
             
             break;
 
+            case 3:
+            //-- Mostrar todas as tarefas cadastradas chamando a função
+            printf("\n\n<<-- Tarefas -->>");
+            ListarTarefas(ListaTarefas, quant_tarefas);
+            break;
+
             case 0: printf("Encerrando..."); break;
 
             default: printf("ERROR=>[Escolha uma opcao valida!!]"); break;
@@ -124,15 +131,26 @@ int main()
 
     }while(opcao != 0);
 
-    
-    printf("\n\nId tarefa: %s", ListaTarefas[0].id_tarefa);
-    printf("\nNome da tarefa: %s", ListaTarefas[0].NomeTarefa);
-    printf("\nPrioridade: %s", ListaTarefas[0].Prioridade);
-    printf("\nStatus: %s", ListaTarefas[0].Status);
-    printf("\nTempo estimado para conclusao: %d", ListaTarefas[0].TempoEstimadoConclusao);
-
 }
 
+void ListarTarefas(tarefa lista[10], int quant)
+{
+    if(quant == 0)
+    {
+        printf("\nNenhuma tarefa cadastrada!!");
+    }
+    else
+    {
+        for(int i = 0; i < quant; i++)
+        {
+            printf("\n\nId tarefa: %s", lista[i].id_tarefa);
+            printf("\nNome da tarefa: %s", lista[i].NomeTarefa);
+            printf("\nPrioridade: %s", lista[i].Prioridade);
+            printf("\nStatus: %s", lista[i].Status);
+            printf("\nTempo estimado para conclusao: %d", lista[i].TempoEstimadoConclusao);
+        }
+    }
+}
 
 void CadastrarTarefa(tarefa lista[10], int quantidade)
 {
