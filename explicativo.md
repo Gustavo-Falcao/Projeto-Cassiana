@@ -58,6 +58,8 @@
 
 ## MELHORIAS
 - Encontrar um jeito de fornecer a posição da tarefa na matriz quando for verificar o Status
+- Melhorar a forma de mostrar o tempo estimado da tarefas pendentes, incluindo o nome das tarefas e seus respectivos tempos.
+- Pode ser feito um procedimento para mostrar o resultado com as tarefas pendentes.
 
 ## ONDE PAREI
 - Verifica Status, verificando se o status escolhido para atualizar já existe na string
@@ -67,3 +69,9 @@
 - Pode utilizar o typedef para encurtar a chamada da struct dentro da função main ?
 - O uso do sprintf foi abordado em aula ? pode ser utilizado ?
 - Pode utilizar o operador ternário ?
+- É necessário fazer todas as ações como procedimentos ?
+
+## FUNÇÃO MOSTRAR TEMPO TOTAL DAS TAREFAS PENDENTES
+- somar todos os tempos de todas as tarefas que estarão em horas
+- se a soma der menor do que 1, multiplicar o resultado por 60 e mostrar o tempo em minutos
+- caso contrário mostrar o tempo em horas

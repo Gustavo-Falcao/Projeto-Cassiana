@@ -8,7 +8,7 @@ typedef struct
     char NomeTarefa[30];
     char Prioridade[7];
     char Status[10];
-    int TempoEstimadoConclusao;
+    float TempoEstimadoConclusao;
 } tarefa;
 
 void CadastrarTarefa(tarefa [10], int);
@@ -18,6 +18,7 @@ void LimpaConsulta(char [10]);
 bool VerificaSeStatusJaExiste(tarefa [10], int, char [10], int);
 void ListarTarefas(tarefa [10], int);
 void ListarTarefasPorStatus(int, int, tarefa [10]);
+float TempoTotalTarefasPendentes(tarefa [10], int);
 
 int main()
 {
@@ -27,12 +28,12 @@ int main()
 
     do
     {
-        printf("\n\n\n<<--- Menu das Tarefas --->>");
+        printf("\n\n\n   <<--- Menu das Tarefas --->>");
         printf("\nCadastrar uma nova tarefa [1]");
         printf("\nAtualizar o status da tarefa [2]");
         printf("\nListar todas as tarefas cadastradas [3]");
         printf("\nListar tarefas de acordo com o status [4]");
-        printf("\nMostrar o tempo total estimado para tarefas pendentes [5]");
+        printf("\nTempo total estimado para tarefas pendentes [5]");
         printf("\nEncerrar [0]");
         printf("\nEscolha uma opcao: ");
         scanf("%d", &opcao);
@@ -139,6 +140,15 @@ int main()
             case 5:
             //-- Mostrar tempo total para tarefas pendentes
             printf("\n\n<<-- Tempo total para tarefas pendentes -->>");
+            if(TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas) < 1)
+            {
+                printf("O tempo total e de %.0f minutos", TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas) * 60);
+            }
+            else
+            {
+                printf("O tempo total e de %.0f horas", TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas));
+            }
+
             break;
 
             case 0: printf("Encerrando..."); break;
@@ -150,25 +160,7 @@ int main()
 
 }
 
-void ListarTarefas(tarefa lista[10], int quant)
-{
-    if(quant == 0)
-    {
-        printf("\nNenhuma tarefa cadastrada!!");
-    }
-    else
-    {
-        for(int i = 0; i < quant; i++)
-        {
-            printf("\n\nId tarefa: %s", lista[i].id_tarefa);
-            printf("\nNome da tarefa: %s", lista[i].NomeTarefa);
-            printf("\nPrioridade: %s", lista[i].Prioridade);
-            printf("\nStatus: %s", lista[i].Status);
-            printf("\nTempo para a tarefa: %d", lista[i].TempoEstimadoConclusao);
-        }
-    }
-}
-
+//-- Procedimento para o cadastro da tarefa
 void CadastrarTarefa(tarefa lista[10], int quantidade)
 {
 
@@ -185,53 +177,11 @@ void CadastrarTarefa(tarefa lista[10], int quantidade)
     scanf(" %9[^\n]", lista[quantidade].Status);
 
     printf("Informe o tempo em horas para a conclusao da tarefa: ");
-    scanf("%d", &lista[quantidade].TempoEstimadoConclusao);
+    scanf("%f", &lista[quantidade].TempoEstimadoConclusao);
 
 }
 
-bool VerificaId(tarefa lista[10], int quantidade, char id[10])
-{
-
-    bool id_igual = false;
-
-    for(int i = 0; i < quantidade; i ++)
-    {
-        if(strcmp(lista[i].id_tarefa, id) == 0)
-        {
-            id_igual = true;
-            break;
-        }
-    }
-    return id_igual;
-}
-
-void LimpaConsulta(char str[10])
-{
-    str[0] = '\0';
-}
-
-bool VerificaSeStatusJaExiste(tarefa lista[10], int quantidade, char id[10], int valor)
-{
-    char status[10];
-
-    valor == 1 ? strcpy(status, "pendente") : strcpy(status, "concluida");
-
-    bool status_existe = false;
-
-    for(int i = 0; i < quantidade; i++)
-    {
-        if(strcmp(lista[i].id_tarefa, id) == 0)
-        {
-            if(strcmp(lista[i].Status, status) == 0)
-            {
-                status_existe = true;
-                break;
-            }
-        }
-    }
-    return status_existe;
-}
-
+//-- Procedimento para atualizar o status da tarefa
 void AtualizarStatus(tarefa lista[10], int valor, char id[10], int quant)
 {
     char status[10];
@@ -249,6 +199,27 @@ void AtualizarStatus(tarefa lista[10], int valor, char id[10], int quant)
 
 }
 
+//-- Procedimento para mostrar todas as tarefas cadastradas
+void ListarTarefas(tarefa lista[10], int quant)
+{
+    if(quant == 0)
+    {
+        printf("\nNenhuma tarefa cadastrada!!");
+    }
+    else
+    {
+        for(int i = 0; i < quant; i++)
+        {
+            printf("\n\nId tarefa: %s", lista[i].id_tarefa);
+            printf("\nNome da tarefa: %s", lista[i].NomeTarefa);
+            printf("\nPrioridade: %s", lista[i].Prioridade);
+            printf("\nStatus: %s", lista[i].Status);
+            printf("\nTempo para a tarefa: %.2f", lista[i].TempoEstimadoConclusao);
+        }
+    }
+}
+
+//-- Procedimento para listar as tarefas de acordo com o status escolhido pelo usuário
 void ListarTarefasPorStatus(int valor, int quant, tarefa lista[10])
 {
     char status[10];
@@ -271,7 +242,7 @@ void ListarTarefasPorStatus(int valor, int quant, tarefa lista[10])
                 printf("\nNome da tarefa: %s", lista[i].NomeTarefa);
                 printf("\nPrioridade: %s", lista[i].Prioridade);
                 printf("\nStatus: %s", lista[i].Status);
-                printf("\nTempo estimado para conclusao: %d", lista[i].TempoEstimadoConclusao);
+                printf("\nTempo estimado para conclusao: %.2f", lista[i].TempoEstimadoConclusao);
                 quantstatus++;
             }
         }
@@ -281,6 +252,67 @@ void ListarTarefasPorStatus(int valor, int quant, tarefa lista[10])
             printf("\n-->> No momento nenhuma tarefa %s", status);
         }
     }
-
-    
 }
+
+float TempoTotalTarefasPendentes(tarefa lista[10], int quant)
+{
+    float total = 0.0;
+
+    for(int i = 0; i < quant; i++)
+    {
+        if(strcmp(lista[i].Status, "pendente") == 0)
+        {
+            total += lista[i].TempoEstimadoConclusao;
+        }
+    }
+
+    return total;
+}
+
+//-- Função para verificar se o id consultado é válido
+bool VerificaId(tarefa lista[10], int quantidade, char id[10])
+{
+
+    bool id_igual = false;
+
+    for(int i = 0; i < quantidade; i ++)
+    {
+        if(strcmp(lista[i].id_tarefa, id) == 0)
+        {
+            id_igual = true;
+            break;
+        }
+    }
+    return id_igual;
+}
+
+//-- Procedimento para limpar string que recebe o id consultado
+void LimpaConsulta(char str[10])
+{
+    str[0] = '\0';
+}
+
+//-- Função para prevenir o usuário de inserir um status já existente
+bool VerificaSeStatusJaExiste(tarefa lista[10], int quantidade, char id[10], int valor)
+{
+    char status[10];
+
+    valor == 1 ? strcpy(status, "pendente") : strcpy(status, "concluida");
+
+    bool status_existe = false;
+
+    for(int i = 0; i < quantidade; i++)
+    {
+        if(strcmp(lista[i].id_tarefa, id) == 0)
+        {
+            if(strcmp(lista[i].Status, status) == 0)
+            {
+                status_existe = true;
+                break;
+            }
+        }
+    }
+    return status_existe;
+}
+
+
