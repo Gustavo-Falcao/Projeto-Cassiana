@@ -136,6 +136,11 @@ int main()
             ListarTarefasPorStatus(opcao, quant_tarefas, ListaTarefas);
             break;
 
+            case 5:
+            //-- Mostrar tempo total para tarefas pendentes
+            printf("\n\n<<-- Tempo total para tarefas pendentes -->>");
+            break;
+
             case 0: printf("Encerrando..."); break;
 
             default: printf("ERROR=>[Escolha uma opcao valida!!]"); break;
@@ -159,7 +164,7 @@ void ListarTarefas(tarefa lista[10], int quant)
             printf("\nNome da tarefa: %s", lista[i].NomeTarefa);
             printf("\nPrioridade: %s", lista[i].Prioridade);
             printf("\nStatus: %s", lista[i].Status);
-            printf("\nTempo estimado para conclusao: %d", lista[i].TempoEstimadoConclusao);
+            printf("\nTempo para a tarefa: %d", lista[i].TempoEstimadoConclusao);
         }
     }
 }
@@ -167,7 +172,7 @@ void ListarTarefas(tarefa lista[10], int quant)
 void CadastrarTarefa(tarefa lista[10], int quantidade)
 {
 
-    printf("\nInforme o id para esta tarefa com no maximo 10 caracteres: ");
+    printf("\nInforme o id para esta tarefa: ");
     scanf(" %10[^\n]", lista[quantidade].id_tarefa);
 
     printf("Informe o nome da tarefa: ");
