@@ -62,3 +62,8 @@
 ## ONDE PAREI
 - Verifica Status, verificando se o status escolhido para atualizar já existe na string
 - Opção 2 para atualizar o status com a condição else
+
+## DUVIDAS
+- Pode utilizar o typedef para encurtar a chamada da struct dentro da função main ?
+- O uso do sprintf foi abordado em aula ? pode ser utilizado ?
+- Pode utilizar o operador ternário ?

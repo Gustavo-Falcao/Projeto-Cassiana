@@ -17,6 +17,7 @@ bool VerificaId(tarefa [10], int, char [10]);
 void LimpaConsulta(char [10]);
 bool VerificaSeStatusJaExiste(tarefa [10], int, char [10], int);
 void ListarTarefas(tarefa [10], int);
+void ListarTarefasPorStatus(int, int, tarefa [10]);
 
 int main()
 {
@@ -124,6 +125,17 @@ int main()
             ListarTarefas(ListaTarefas, quant_tarefas);
             break;
 
+            case 4:
+            //-- Mostrar tarefas por status
+            printf("\n\n<<-- Mostrar tarefas -->>");
+            printf("\nMostrar tarefas pendentes [1]");
+            printf("\nMostrar tarefas concluidas [2]");
+            printf("\nEscolha uma opcao: ");
+            scanf("%d", &opcao);
+
+            ListarTarefasPorStatus(opcao, quant_tarefas, ListaTarefas);
+            break;
+
             case 0: printf("Encerrando..."); break;
 
             default: printf("ERROR=>[Escolha uma opcao valida!!]"); break;
@@ -197,7 +209,7 @@ bool VerificaSeStatusJaExiste(tarefa lista[10], int quantidade, char id[10], int
 {
     char status[10];
 
-    valor == 1 ? strcpy(status, "Pendente") : strcpy(status, "Concluida");
+    valor == 1 ? strcpy(status, "pendente") : strcpy(status, "concluida");
 
     bool status_existe = false;
 
@@ -219,7 +231,7 @@ void AtualizarStatus(tarefa lista[10], int valor, char id[10], int quant)
 {
     char status[10];
 
-    valor == 1 ? strcpy(status, "Pendendte") : strcpy(status, "Concluida");
+    valor == 1 ? strcpy(status, "pendente") : strcpy(status, "concluida");
 
     for(int i = 0; i < quant; i++)
     {
@@ -230,4 +242,40 @@ void AtualizarStatus(tarefa lista[10], int valor, char id[10], int quant)
         }
     }
 
+}
+
+void ListarTarefasPorStatus(int valor, int quant, tarefa lista[10])
+{
+    char status[10];
+    int quantstatus = 0;
+
+    valor == 1 ? sprintf(status, "%s", "pendente") : sprintf(status, "%s", "concluida");
+
+    if(quant == 0)
+    {
+        printf("\nERROR=>[Nenhuma tarefa cadastrada!!]");
+    }
+    else
+    {
+        printf("\n\n<<-- Tarefas com o status %s -->>", status);
+        for(int i = 0; i < quant; i++)
+        {
+            if(strcmp(lista[i].Status, status) == 0)
+            {
+                printf("\n\nId tarefa: %s", lista[i].id_tarefa);
+                printf("\nNome da tarefa: %s", lista[i].NomeTarefa);
+                printf("\nPrioridade: %s", lista[i].Prioridade);
+                printf("\nStatus: %s", lista[i].Status);
+                printf("\nTempo estimado para conclusao: %d", lista[i].TempoEstimadoConclusao);
+                quantstatus++;
+            }
+        }
+
+        if(quantstatus == 0)
+        {
+            printf("\n-->> No momento nenhuma tarefa %s", status);
+        }
+    }
+
+    
 }
