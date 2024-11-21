@@ -70,6 +70,7 @@
 - O uso do sprintf foi abordado em aula ? pode ser utilizado ?
 - Pode utilizar o operador ternário ?
 - É necessário fazer todas as ações como procedimentos ?
+- Pode fazer o uso de cast(troca de tipos)
 
 ## FUNÇÃO MOSTRAR TEMPO TOTAL DAS TAREFAS PENDENTES
 - somar todos os tempos de todas as tarefas que estarão em horas

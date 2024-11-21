@@ -140,20 +140,7 @@ int main()
 
             case 5:
             //-- Mostrar tempo total para tarefas pendentes
-            
             MostrarTempoTotaleTarefasPendentes(TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas), ListaTarefas, quant_tarefas);
-            
-            
-            /* printf("\n\n<<-- Tempo total para tarefas pendentes -->>");
-            if(TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas) < 1)
-            {
-                printf("\nO tempo total e de %.0f minutos", TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas) * 60);
-            }
-            else
-            {
-                printf("\nO tempo total e de %.0f horas", TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas));
-            } */
-
             break;
 
             case 0: printf("Encerrando..."); break;
