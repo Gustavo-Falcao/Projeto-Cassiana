@@ -1,5 +1,5 @@
 
-#include<stdio.h>
+/* #include<stdio.h>
 
 void troca(int* , int*);
 
@@ -30,4 +30,19 @@ void troca(int *a, int *b)
     aux = *a;
     *a = *b;
     *b = aux;
+} */
+
+#include<stdio.h>
+int main()
+{
+    double tempo = 2.30;
+    int horas, minutos;
+
+    horas = (int)tempo;
+
+    minutos = (tempo - (int)tempo) * 60;
+
+    printf("horas: %d", horas);
+    printf("\nminutos: %d", minutos);
+
 }

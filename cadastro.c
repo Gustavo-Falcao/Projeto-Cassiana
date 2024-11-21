@@ -8,7 +8,7 @@ typedef struct
     char NomeTarefa[30];
     char Prioridade[7];
     char Status[10];
-    float TempoEstimadoConclusao;
+    double TempoEstimadoConclusao;
 } tarefa;
 
 void CadastrarTarefa(tarefa [10], int);
@@ -18,7 +18,8 @@ void LimpaConsulta(char [10]);
 bool VerificaSeStatusJaExiste(tarefa [10], int, char [10], int);
 void ListarTarefas(tarefa [10], int);
 void ListarTarefasPorStatus(int, int, tarefa [10]);
-float TempoTotalTarefasPendentes(tarefa [10], int);
+double TempoTotalTarefasPendentes(tarefa [10], int);
+void MostrarTempoTotaleTarefasPendentes(double, tarefa [10], int);
 
 int main()
 {
@@ -139,15 +140,19 @@ int main()
 
             case 5:
             //-- Mostrar tempo total para tarefas pendentes
-            printf("\n\n<<-- Tempo total para tarefas pendentes -->>");
+            
+            MostrarTempoTotaleTarefasPendentes(TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas), ListaTarefas, quant_tarefas);
+            
+            
+            /* printf("\n\n<<-- Tempo total para tarefas pendentes -->>");
             if(TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas) < 1)
             {
-                printf("O tempo total e de %.0f minutos", TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas) * 60);
+                printf("\nO tempo total e de %.0f minutos", TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas) * 60);
             }
             else
             {
-                printf("O tempo total e de %.0f horas", TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas));
-            }
+                printf("\nO tempo total e de %.0f horas", TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas));
+            } */
 
             break;
 
@@ -177,7 +182,7 @@ void CadastrarTarefa(tarefa lista[10], int quantidade)
     scanf(" %9[^\n]", lista[quantidade].Status);
 
     printf("Informe o tempo em horas para a conclusao da tarefa: ");
-    scanf("%f", &lista[quantidade].TempoEstimadoConclusao);
+    scanf("%lf", &lista[quantidade].TempoEstimadoConclusao);
 
 }
 
@@ -249,14 +254,14 @@ void ListarTarefasPorStatus(int valor, int quant, tarefa lista[10])
 
         if(quantstatus == 0)
         {
-            printf("\n-->> No momento nenhuma tarefa %s", status);
+            printf("\n  >> No momento nenhuma tarefa %s", status);
         }
     }
 }
 
-float TempoTotalTarefasPendentes(tarefa lista[10], int quant)
+double TempoTotalTarefasPendentes(tarefa lista[10], int quant)
 {
-    float total = 0.0;
+    double total = 0.0;
 
     for(int i = 0; i < quant; i++)
     {
@@ -313,6 +318,36 @@ bool VerificaSeStatusJaExiste(tarefa lista[10], int quantidade, char id[10], int
         }
     }
     return status_existe;
+}
+
+//-- Procedimento para mostrar o tempo total e tarefas pendentes
+void MostrarTempoTotaleTarefasPendentes(double tempo_total, tarefa lista[10], int quant)
+{
+
+    printf("\n\n<<-- Tempo total para as tarefas pendentes -->>");
+        if(tempo_total < 1)
+        {
+            printf("\n   >> %.0f minutos", tempo_total * 60);//se o valor na somatoria for menor do que 1, o tempo é convertido para minutos.
+        }
+        else
+        {// tempo convertido para horas e minutos.
+            int horas = (int)tempo_total;// horas recebe o valor inteiro de tempo_total.
+            int minutos = (tempo_total - (int)tempo_total) * 60;// minutos recebe o tempo total menos a parte inteira de tempo total, multiplicando a parte decimal para calcular os minutos.
+
+            printf("\n   >> %d horas e %d minutos", horas, minutos);
+        }
+
+    
+    printf("\n\n##TAREFAS");
+    for(int i = 0; i < quant; i++)
+    {
+        if(strcmp(lista[i].Status, "pendente") == 0)
+        {
+            printf("\n   >>Nome: %s", lista[i].NomeTarefa);
+            printf("\n   >>Tempo: %.2f horas\n", lista[i].TempoEstimadoConclusao);
+        }
+    }
+
 }
 
 

@@ -75,3 +75,17 @@
 - somar todos os tempos de todas as tarefas que estarão em horas
 - se a soma der menor do que 1, multiplicar o resultado por 60 e mostrar o tempo em minutos
 - caso contrário mostrar o tempo em horas
+
+## Modificações
+- Trocar o tipo float para o tipo double *
+
+- fazer procedimento para mostrar o tempo total e as tarefas *
+- mudar a forma de mostrar o tempo total, agora mostrando em horas e minutos calculado do tempo total em horas.
+
+
+## A FAZER
+- Melhorar o menu de listagem, deixando:
+	- Um principal chamado listar tarefas
+	- Ao clicar nessa opcao, aparecerá duas opcoes de listagem:
+		- Todas as tarefas cadastradas
+		- Tarefas de acordo com o status
