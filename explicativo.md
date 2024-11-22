@@ -83,6 +83,11 @@
 - fazer procedimento para mostrar o tempo total e as tarefas *
 - mudar a forma de mostrar o tempo total, agora mostrando em horas e minutos calculado do tempo total em horas.
 
+- Adicionado no menu a opção listar tarefas
+- dentro da opção, adicionado duas opções:
+ - Todas cadastradas
+ - Por status
+- e para cada opcao, chamar a função.
 
 ## A FAZER
 - Melhorar o menu de listagem, deixando:
@@ -90,3 +95,4 @@
 	- Ao clicar nessa opcao, aparecerá duas opcoes de listagem:
 		- Todas as tarefas cadastradas
 		- Tarefas de acordo com o status
+- Melhorar a forma de mostrar os menus e as opcoes.

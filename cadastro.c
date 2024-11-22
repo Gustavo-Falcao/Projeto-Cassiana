@@ -32,9 +32,8 @@ int main()
         printf("\n\n\n   <<--- Menu das Tarefas --->>");
         printf("\nCadastrar uma nova tarefa [1]");
         printf("\nAtualizar o status da tarefa [2]");
-        printf("\nListar todas as tarefas cadastradas [3]");
-        printf("\nListar tarefas de acordo com o status [4]");
-        printf("\nTempo total estimado para tarefas pendentes [5]");
+        printf("\nListar tarefas [3]");
+        printf("\nTempo total estimado para tarefas pendentes [4]");
         printf("\nEncerrar [0]");
         printf("\nEscolha uma opcao: ");
         scanf("%d", &opcao);
@@ -122,23 +121,31 @@ int main()
             break;
 
             case 3:
-            //-- Mostrar todas as tarefas cadastradas chamando a função
-            printf("\n\n<<-- Tarefas -->>");
-            ListarTarefas(ListaTarefas, quant_tarefas);
-            break;
-
-            case 4:
-            //-- Mostrar tarefas por status
-            printf("\n\n<<-- Mostrar tarefas -->>");
-            printf("\nMostrar tarefas pendentes [1]");
-            printf("\nMostrar tarefas concluidas [2]");
+            //-- Mostrar tarefas
+            printf("\n\n<<-- Listar Tarefas -->>");
+            printf("\nTodas cadastradas [1]");
+            printf("\nPor status [2]");
             printf("\nEscolha uma opcao: ");
             scanf("%d", &opcao);
 
-            ListarTarefasPorStatus(opcao, quant_tarefas, ListaTarefas);
+                if(opcao == 1)
+                {//mostrar todas cadastradas
+                    printf("\n\n\n<<-- Tarefas cadastradas ->>");
+                    ListarTarefas(ListaTarefas, quant_tarefas);
+                }
+                else
+                {//mostrar por status
+                    printf("\n\n<<-- Por status -->>");
+                    printf("\nMostrar tarefas pendentes [1]");
+                    printf("\nMostrar tarefas concluidas [2]");
+                    printf("\nEscolha uma opcao: ");
+                    scanf("%d", &opcao);
+
+                    ListarTarefasPorStatus(opcao, quant_tarefas, ListaTarefas);
+                }
             break;
 
-            case 5:
+            case 4:
             //-- Mostrar tempo total para tarefas pendentes
             MostrarTempoTotaleTarefasPendentes(TempoTotalTarefasPendentes(ListaTarefas, quant_tarefas), ListaTarefas, quant_tarefas);
             break;
@@ -202,7 +209,8 @@ void ListarTarefas(tarefa lista[10], int quant)
     {
         for(int i = 0; i < quant; i++)
         {
-            printf("\n\nId tarefa: %s", lista[i].id_tarefa);
+            printf("\n\n## Tarefa %d", i + 1);
+            printf("\nId tarefa: %s", lista[i].id_tarefa);
             printf("\nNome da tarefa: %s", lista[i].NomeTarefa);
             printf("\nPrioridade: %s", lista[i].Prioridade);
             printf("\nStatus: %s", lista[i].Status);
