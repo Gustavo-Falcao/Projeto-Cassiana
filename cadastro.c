@@ -185,7 +185,15 @@ void AtualizarStatus(tarefa lista[10], int valor, char id[10], int quant)
 {
     char status[10];
 
-    valor == 1 ? strcpy(status, "pendente") : strcpy(status, "concluida");
+
+    if(valor == 1)
+    {
+        strcpy(status, "pendente");
+    }
+    else
+    {
+        strcpy(status, "concluida");
+    }
 
     for(int i = 0; i < quant; i++)
     {
@@ -225,7 +233,14 @@ void ListarTarefasPorStatus(int valor, int quant, tarefa lista[10])
     char status[10];
     int quantstatus = 0;
 
-    valor == 1 ? sprintf(status, "%s", "pendente") : sprintf(status, "%s", "concluida");
+    if(valor == 1)
+    {
+        strcpy(status, "pendente");
+    }
+    else
+    {
+        strcpy(status, "concluida");
+    }
 
     if(quant == 0)
     {
@@ -297,7 +312,14 @@ bool VerificaSeStatusJaExiste(tarefa lista[10], int quantidade, char id[10], int
 {
     char status[10];
 
-    valor == 1 ? strcpy(status, "pendente") : strcpy(status, "concluida");
+    if(valor == 1)
+    {
+        strcpy(status, "pendente");
+    }
+    else
+    {
+        strcpy(status, "concluida");
+    }
 
     bool status_existe = false;
 
