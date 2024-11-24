@@ -11,19 +11,19 @@ typedef struct
     double TempoEstimadoConclusao;
 } tarefa;
 
-void CadastrarTarefa(tarefa [10], int);
-void AtualizarStatus(tarefa [10], int, char [10], int);
-bool VerificaId(tarefa [10], int, char [10]);
+void CadastrarTarefa(tarefa [50], int);
+void AtualizarStatus(tarefa [50], int, char [10], int);
+bool VerificaId(tarefa [50], int, char [10]);
 void LimpaConsulta(char [10]);
-bool VerificaSeStatusJaExiste(tarefa [10], int, char [10], int);
-void ListarTarefas(tarefa [10], int);
-void ListarTarefasPorStatus(int, int, tarefa [10]);
-double TempoTotalTarefasPendentes(tarefa [10], int);
-void MostrarTempoTotaleTarefasPendentes(double, tarefa [10], int);
+bool VerificaSeStatusJaExiste(tarefa [50], int, char [10], int);
+void ListarTarefas(tarefa [50], int);
+void ListarTarefasPorStatus(int, int, tarefa [50]);
+double TempoTotalTarefasPendentes(tarefa [50], int);
+void MostrarTempoTotaleTarefasPendentes(double, tarefa [50], int);
 
 int main()
 {
-    tarefa ListaTarefas[10];
+    tarefa ListaTarefas[50];
     int opcao, quant_tarefas = 0;
     char id_consulta[10];
 
@@ -160,7 +160,7 @@ int main()
 }
 
 //-- Procedimento para o cadastro da tarefa
-void CadastrarTarefa(tarefa lista[10], int quantidade)
+void CadastrarTarefa(tarefa lista[50], int quantidade)
 {
 
     printf("\nInforme o id para esta tarefa: ");
@@ -181,7 +181,7 @@ void CadastrarTarefa(tarefa lista[10], int quantidade)
 }
 
 //-- Procedimento para atualizar o status da tarefa
-void AtualizarStatus(tarefa lista[10], int valor, char id[10], int quant)
+void AtualizarStatus(tarefa lista[50], int valor, char id[10], int quant)
 {
     char status[10];
 
@@ -207,7 +207,7 @@ void AtualizarStatus(tarefa lista[10], int valor, char id[10], int quant)
 }
 
 //-- Procedimento para mostrar todas as tarefas cadastradas
-void ListarTarefas(tarefa lista[10], int quant)
+void ListarTarefas(tarefa lista[50], int quant)
 {
     if(quant == 0)
     {
@@ -228,7 +228,7 @@ void ListarTarefas(tarefa lista[10], int quant)
 }
 
 //-- Procedimento para listar as tarefas de acordo com o status escolhido pelo usuário
-void ListarTarefasPorStatus(int valor, int quant, tarefa lista[10])
+void ListarTarefasPorStatus(int valor, int quant, tarefa lista[50])
 {
     char status[10];
     int quantstatus = 0;
@@ -269,7 +269,7 @@ void ListarTarefasPorStatus(int valor, int quant, tarefa lista[10])
     }
 }
 
-double TempoTotalTarefasPendentes(tarefa lista[10], int quant)
+double TempoTotalTarefasPendentes(tarefa lista[50], int quant)
 {
     double total = 0.0;
 
@@ -285,7 +285,7 @@ double TempoTotalTarefasPendentes(tarefa lista[10], int quant)
 }
 
 //-- Função para verificar se o id consultado é válido
-bool VerificaId(tarefa lista[10], int quantidade, char id[10])
+bool VerificaId(tarefa lista[50], int quantidade, char id[10])
 {
 
     bool id_igual = false;
@@ -308,7 +308,7 @@ void LimpaConsulta(char str[10])
 }
 
 //-- Função para prevenir o usuário de inserir um status já existente
-bool VerificaSeStatusJaExiste(tarefa lista[10], int quantidade, char id[10], int valor)
+bool VerificaSeStatusJaExiste(tarefa lista[50], int quantidade, char id[10], int valor)
 {
     char status[10];
 
@@ -338,7 +338,7 @@ bool VerificaSeStatusJaExiste(tarefa lista[10], int quantidade, char id[10], int
 }
 
 //-- Procedimento para mostrar o tempo total e tarefas pendentes
-void MostrarTempoTotaleTarefasPendentes(double tempo_total, tarefa lista[10], int quant)
+void MostrarTempoTotaleTarefasPendentes(double tempo_total, tarefa lista[50], int quant)
 {
 
     printf("\n\n<<-- Tempo total para as tarefas pendentes -->>");
