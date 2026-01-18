@@ -72,7 +72,9 @@
 ## Pré-requisitos
 - Verifique se o compilador MinGW está instalado e devidamente configurado no PATH do sistema.
 - Para verificar, abra o Prompt de digite: 
-    - ```gcc --version```
+    ```
+    gcc --version
+    ```
     - Se o comando retornar a versão do GCC, a configuração está correta. Caso contrário, será 
     necessário instalar e configurar o MinGW.
 
@@ -89,6 +91,12 @@ gcc -o nome_do_arquivo nome_do_arquivo.c
 
 ```    
 ### Para executar o programa siga o seguinte comando: 
-- (Linux/Mac) ```./nome_do_arquivo```
-- (Windows) ```nome_do_arquivo.exe```
+- (Linux/Mac) 
+```
+./nome_do_arquivo
+```
+- (Windows) 
+```
+nome_do_arquivo.exe
+```
 - Observação: Para compilar o arquivo, primeiro será informado o nome do arquivo sem o tipo .c, pois esse será o arquivo executável e em seguida será informado o arquivo do tipo .c.
