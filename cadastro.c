@@ -25,7 +25,7 @@ int main()
 {
     tarefa ListaTarefas[50];
     int opcao, quant_tarefas = 0;
-    char id_consulta[10];
+    char id_consulta[11];
 
     do
     {
